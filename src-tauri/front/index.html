@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>柔和风格按钮示例</title>
+
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8;
+            color: #4a4a4a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        button {
+            background: #a8dadc;
+            border: none;
+            border-radius: 8px;
+            color: #1d3557;
+            font-size: 1.25rem;
+            padding: 14px 32px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(168, 218, 220, 0.4);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+        button:hover {
+            background: #89c2d9;
+            box-shadow: 0 6px 16px rgba(137, 194, 217, 0.6);
+        }
+        button:active {
+            background: #7bb0c4;
+        }
+    </style>
+</head>
+<body>
+<h1>欢迎使用柔和风格界面</h1>
+<button id="btn">点击调用后台</button>
+<script type="module" src="./ts/main.ts"></script>
+</body>
+</html>
