@@ -2,12 +2,11 @@
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "Tauri App",
   "version": "0.1.0",
-
   "identifier": "com.tauri.dev",
   "build": {
     "frontendDist": "front",
-    "beforeDevCommand": "npm install && npm run start",
-    "beforeBuildCommand": "npm install && npm run build"
+    "beforeDevCommand": "cd src-tauri/front && npm install && npm run start",
+    "beforeBuildCommand": "cd src-tauri/front && npm install && npm run build"
   },
   "app": {
     "windows": [
