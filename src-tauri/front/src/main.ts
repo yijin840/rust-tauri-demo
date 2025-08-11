@@ -2,23 +2,25 @@ import { createApp } from 'vue';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import App from './App.vue';
 
-// 导入页面组件
+// Import the page components
 import HomePage from './pages/HomePage.vue';
 import DetailPage from './pages/DetailPage.vue';
+import MusicPage from "./pages/MusicPage.vue";
 
-// 定义路由规则
+// Define the routes
 const routes: Array<RouteRecordRaw> = [
     { path: '/', name: 'Home', component: HomePage },
     { path: '/detail', name: 'Detail', component: DetailPage },
+    { path: '/music', name: 'Music', component: MusicPage },
 ];
 
-// 创建路由实例
+// Create the router instance
 const router = createRouter({
     history: createWebHistory(),
     routes,
 });
 
-// 创建 Vue 应用实例并挂载
+// Create the Vue app and mount it
 const app = createApp(App);
-app.use(router); // 使用路由
+app.use(router); // Use the router
 app.mount('#app');

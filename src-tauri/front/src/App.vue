@@ -1,65 +1,92 @@
 <script setup lang="ts">
-import { invoke } from '@tauri-apps/api/core';
+import { useRouter } from 'vue-router';
+import NavButton from './components/NavButton.vue';
 
-// 你可以在 App.vue 中保留全局的 Tauri 逻辑
-// 例如：一个全局的函数来调用后端命令
-async function greet(name: string) {
-  try {
-    const response = await invoke('greet_cmd', { name });
-    console.log(response);
-  } catch (error) {
-    console.error(error);
-  }
+const router = useRouter();
+
+/**
+ * @description Handles the click event from the NavButton component
+ * @param {string} routeName - The name of the route to navigate to
+ */
+function handleNavClick(routeName: string) {
+  // Use Vue Router to navigate to the specified route
+  router.push(routeName);
 }
 </script>
 
 <template>
-  <div id="app">
-    <!-- 路由导航链接 -->
-    <nav class="navigation">
-      <router-link to="/" class="nav-link">首页</router-link>
-      <router-link to="/detail" class="nav-link">详情页</router-link>
-    </nav>
+  <div class="app-container">
+    <header class="header-container">
+      <h1 class="title">我的 Tauri 应用</h1>
+      <nav class="navigation">
+        <!-- Use NavButton components for navigation -->
+        <NavButton label="首页" @click="handleNavClick('/')" />
+        <NavButton label="详情页" @click="handleNavClick('/detail')" />
+        <NavButton label="音乐" @click="handleNavClick('/music')" />
+      </nav>
+    </header>
 
+    <!-- This is where the pages will be rendered based on the route -->
     <div class="content">
-      <!-- 路由视图，用于显示当前页面 -->
       <router-view></router-view>
     </div>
   </div>
 </template>
 
-<style>
-/* 全局样式可以放在这里 */
-body, html, #app {
-  margin: 0;
-  padding: 0;
+<style scoped>
+/* Scoped styles for this component */
+.app-container {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
+  /* 使用 Flexbox 布局 */
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* 确保占据整个视口高度 */
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #e0f2f1;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  /* 确保头部不被挤压 */
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1d3557;
 }
 
 .navigation {
   display: flex;
-  justify-content: center;
-  padding: 1rem;
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #e9ecef;
-}
-
-.nav-link {
-  margin: 0 1rem;
-  text-decoration: none;
-  color: #007bff;
-  font-weight: 500;
-  transition: color 0.2s;
-}
-
-.nav-link:hover {
-  color: #0056b3;
+  gap: 10px;
 }
 
 .content {
-  padding: 2rem;
-  text-align: center;
+  /* 确保内容区域占据剩余空间 */
+  flex-grow: 1;
+  /* 禁用内容区域的滚动条 */
+  overflow: hidden;
+  /* 移除 padding，让子元素可以铺满 */
+  padding: 0;
+  /* 移除 text-align */
+  text-align: initial;
+  /* 使用 Flexbox 布局来居中内容 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
 
+<style>
+/* Global styles to remove scrollbars */
+body, html {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+</style>
