@@ -1,0 +1,9 @@
+[package]
+name = "rtd"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+path = "lib.rs"   # 你主库文件路径
+
+[dependencies]
